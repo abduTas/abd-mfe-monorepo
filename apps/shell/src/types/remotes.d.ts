@@ -5,10 +5,10 @@ declare module "sharedState/store" {
   export function getStore(): Store<RootState>;
   export const increment: (updater: DemoUpdater) => { type: string; payload: DemoUpdater };
   export const decrement: (updater: DemoUpdater) => { type: string; payload: DemoUpdater };
-  export const setMessage: (payload: {
-    message: string;
-    updatedBy: DemoUpdater;
-  }) => { type: string; payload: { message: string; updatedBy: DemoUpdater } };
+  export const setMessage: (payload: { message: string; updatedBy: DemoUpdater }) => {
+    type: string;
+    payload: { message: string; updatedBy: DemoUpdater };
+  };
   export const resetDemo: () => { type: string };
   export type { RootState, AppDispatch, DemoUpdater };
 }

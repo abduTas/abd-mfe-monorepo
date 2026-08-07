@@ -37,11 +37,11 @@ Production-style SaaS dashboard sample that demonstrates core and advanced Next.
 
 This app is the **host** in the `abd-mfe-monorepo` Turborepo. See the [root README](../../../README.md) and [docs/VERCEL.md](../../../docs/VERCEL.md).
 
-| Package | Path | Role | Port |
-|---|---|---|---|
-| `@abd/host` | `apps/host` (this app) | Host — `/dashboard/micro` | 3000 |
-| `@abd/shell` | `apps/shell` | Remote UI — `MicroShellApp` | 3001 |
-| `@abd/state` | `apps/state` | Shared Redux store | 3002 |
+| Package      | Path                   | Role                        | Port |
+| ------------ | ---------------------- | --------------------------- | ---- |
+| `@abd/host`  | `apps/host` (this app) | Host — `/dashboard/micro`   | 3000 |
+| `@abd/shell` | `apps/shell`           | Remote UI — `MicroShellApp` | 3001 |
+| `@abd/state` | `apps/state`           | Shared Redux store          | 3002 |
 
 **Local dev** from monorepo root:
 

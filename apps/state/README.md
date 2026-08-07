@@ -4,9 +4,9 @@ Redux shared-state **Module Federation remote** (Vite + React).
 
 ## Exposes
 
-| Module | Description |
-|---|---|
-| `sharedState/store` | `getStore()`, actions, types |
+| Module              | Description                        |
+| ------------------- | ---------------------------------- |
+| `sharedState/store` | `getStore()`, actions, types       |
 | `sharedState/hooks` | `useAppDispatch`, `useAppSelector` |
 
 ## Local dev

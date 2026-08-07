@@ -4,11 +4,11 @@ Turborepo monorepo for the PulseBoard microfrontend stack: Next.js host + two Vi
 
 ## Apps
 
-| Package | Path | Stack | Port | Role |
-|---|---|---|---|---|
-| `@abd/host` | `apps/host` | Next.js 15 | 3000 | PulseBoard host — `/dashboard/micro` |
-| `@abd/shell` | `apps/shell` | Vite + federation | 3001 | Remote UI — `MicroShellApp` |
-| `@abd/state` | `apps/state` | Vite + federation | 3002 | Shared Redux store |
+| Package      | Path         | Stack             | Port | Role                                 |
+| ------------ | ------------ | ----------------- | ---- | ------------------------------------ |
+| `@abd/host`  | `apps/host`  | Next.js 15        | 3000 | PulseBoard host — `/dashboard/micro` |
+| `@abd/shell` | `apps/shell` | Vite + federation | 3001 | Remote UI — `MicroShellApp`          |
+| `@abd/state` | `apps/state` | Vite + federation | 3002 | Shared Redux store                   |
 
 ## Quick start
 
@@ -32,19 +32,19 @@ cp .env.example apps/host/.env.local
 
 ## Scripts (root)
 
-| Script | Description |
-|---|---|
+| Script            | Description                          |
+| ----------------- | ------------------------------------ |
 | `npm run dev:mfe` | Start state + shell + host via Turbo |
-| `npm run dev` | Host only |
-| `npm run build` | Build all apps |
-| `npm run test` | Test all apps |
-| `npm run lint` | Lint all apps |
+| `npm run dev`     | Host only                            |
+| `npm run build`   | Build all apps                       |
+| `npm run test`    | Test all apps                        |
+| `npm run lint`    | Lint all apps                        |
 
 ## Production URLs
 
-| App | URL |
-|---|---|
-| Host | https://abd-poc-demo.vercel.app |
+| App   | URL                              |
+| ----- | -------------------------------- |
+| Host  | https://abd-poc-demo.vercel.app  |
 | Shell | https://abd-mfe-shell.vercel.app |
 | State | https://abd-mfe-state.vercel.app |
 
