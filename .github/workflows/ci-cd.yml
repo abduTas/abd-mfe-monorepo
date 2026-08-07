@@ -17,6 +17,31 @@ env:
   TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
 jobs:
+  changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      state: ${{ steps.filter.outputs.state }}
+      shell: ${{ steps.filter.outputs.shell }}
+      host: ${{ steps.filter.outputs.host }}
+      root: ${{ steps.filter.outputs.root }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            state:
+              - 'apps/state/**'
+            shell:
+              - 'apps/shell/**'
+            host:
+              - 'apps/host/**'
+            root:
+              - 'package.json'
+              - 'package-lock.json'
+              - 'turbo.json'
+
   ci:
     name: Lint, Test & Build
     runs-on: ubuntu-latest
@@ -52,8 +77,12 @@ jobs:
 
   deploy-state:
     name: Deploy State Remote
-    needs: ci
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [changes, ci]
+    if: |
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      needs.ci.result == 'success' &&
+      (needs.changes.outputs.state == 'true' || needs.changes.outputs.root == 'true')
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -71,8 +100,14 @@ jobs:
 
   deploy-shell:
     name: Deploy Shell Remote
-    needs: deploy-state
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [changes, ci, deploy-state]
+    if: |
+      always() &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      needs.ci.result == 'success' &&
+      (needs.deploy-state.result == 'success' || needs.deploy-state.result == 'skipped') &&
+      (needs.changes.outputs.shell == 'true' || needs.changes.outputs.state == 'true' || needs.changes.outputs.root == 'true')
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -91,8 +126,14 @@ jobs:
 
   deploy-host:
     name: Deploy Host
-    needs: deploy-shell
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [changes, ci, deploy-shell]
+    if: |
+      always() &&
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      needs.ci.result == 'success' &&
+      (needs.deploy-shell.result == 'success' || needs.deploy-shell.result == 'skipped') &&
+      (needs.changes.outputs.host == 'true' || needs.changes.outputs.root == 'true')
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
