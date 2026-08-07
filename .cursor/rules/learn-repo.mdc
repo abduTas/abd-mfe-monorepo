@@ -1,0 +1,30 @@
+---
+description: PulseBoard monorepo structure and conventions
+alwaysApply: true
+---
+
+# abd-mfe-monorepo
+
+Turborepo with three apps under `apps/`:
+
+| App | Path | Role |
+|---|---|---|
+| Host (PulseBoard) | `apps/host/` | Next.js 15 — main SaaS learning app |
+| Shell remote | `apps/shell/` | Vite MFE — `MicroShellApp` |
+| State remote | `apps/state/` | Vite MFE — shared Redux store |
+
+## Layout (host)
+
+- `apps/host/src/app/(marketing)/` — public pages
+- `apps/host/src/app/(dashboard)/dashboard/` — protected app
+- `apps/host/src/app/(auth)/` — login
+- `apps/host/src/app/api/` — Route Handlers
+- `apps/host/src/components/mfe/` — Module Federation host integration
+- `apps/host/src/lib/mfe/` — Vite remote loader, share scope, URLs
+
+## Conventions
+
+- Use `@/` path alias within each app
+- Run `npm run dev:mfe` from monorepo root for local MFE dev
+- Auth cookie: `pulseboard_session`; middleware guards `/dashboard/*`
+- `NEXT_PUBLIC_*` Vercel env vars must be plain (not Sensitive)

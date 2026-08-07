@@ -1,0 +1,28 @@
+---
+alwaysApply: true
+---
+
+---
+description: PulseBoard learning repo structure and conventions
+alwaysApply: true
+---
+
+# PulseBoard (nextjs-saas-learning)
+
+Learning repo for Next.js 15 App Router — SSR, SSG, ISR, CSR, API routes, auth, middleware, React Query.
+
+## Layout
+- `src/app/(marketing)/` — public pages (blog, home)
+- `src/app/(dashboard)/dashboard/` — protected app (sidebar in `dashboard/layout.tsx`)
+- `src/app/(auth)/` — login
+- `src/app/api/` — Route Handlers (mock backend)
+- `src/components/demo/` — teaching demos only; keep self-contained
+- `src/lib/` — server utilities, auth, mock-db, actions
+- `src/hooks/` — client React Query hooks
+- `src/types/` — shared TypeScript types
+
+## Conventions
+- Use `@/` path alias for imports
+- Tailwind + existing `.card` utility; match existing spacing/typography
+- Auth cookie: `pulseboard_session`; middleware guards `/dashboard/*`
+- Keep changes minimal and focused; this is a learning codebase with intentional patterns

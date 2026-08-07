@@ -1,0 +1,32 @@
+---
+alwaysApply: true
+---
+
+---
+description: Where and how to fetch data in this repo
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Data fetching
+
+## Server (RSC, server actions, Route Handlers)
+- External/server data in RSC: native `fetch` with explicit cache (`cache`, `next.revalidate`)
+- Mutations & form flows: `"use server"` actions in `src/lib/actions/`
+- Return `{ ok: true, data } | { ok: false, error }` — do not throw for expected failures
+- Route Handlers live in `src/app/api/`; use `src/lib/mock-db.ts` for in-memory data
+
+## Client (interactive UI, cache, polling)
+- Use hooks in `src/hooks/` with `@tanstack/react-query`
+- HTTP calls go through `http` from `@/lib/http-client` → same-origin `/api/*`
+- Do NOT add axios or fetch directly inside random components
+
+## ❌ Avoid
+- Fetching in Client Components when a Server Component or server action fits
+- Bypassing `http-client.ts` for dashboard API calls
+- Storing session tokens in `localStorage` (use HttpOnly cookie pattern via `lib/auth.ts`)
+
+## ✅ Example server action result
+\`\`\`ts
+return { ok: false as const, error: "Invalid post id." };
+\`\`\`
