@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "dev": "turbo dev --filter=@abd/host",
-    "dev:mfe": "turbo dev --filter=@abd/state --filter=@abd/shell --filter=@abd/host",
+    "dev": "turbo dev --filter=@abd/design-system --filter=@abd/host",
+    "dev:mfe": "turbo dev --filter=@abd/design-system --filter=@abd/state --filter=@abd/shell --filter=@abd/host",
+    "storybook": "turbo storybook --filter=@abd/design-system",
     "build": "turbo build",
     "lint": "turbo lint",
     "test": "turbo test",

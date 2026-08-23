@@ -5,7 +5,27 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
+    "@abd/shell#build": {
+      "dependsOn": ["^build", "@abd/state#build", "@abd/design-system#build"]
+    },
+    "@abd/host#build": {
+      "dependsOn": ["^build", "@abd/state#build", "@abd/design-system#build"]
+    },
     "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@abd/shell#dev": {
+      "dependsOn": ["@abd/design-system#build"],
+      "cache": false,
+      "persistent": true
+    },
+    "@abd/host#dev": {
+      "dependsOn": ["@abd/design-system#build"],
+      "cache": false,
+      "persistent": true
+    },
+    "storybook": {
       "cache": false,
       "persistent": true
     },

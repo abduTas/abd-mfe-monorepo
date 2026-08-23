@@ -3,6 +3,7 @@
 import { createContext, useContext, useMemo, useState } from "react";
 import { UserSession } from "@/types";
 import { QueryProvider } from "@/components/providers/query-provider";
+import { DesignSystemProvider } from "@/components/providers/design-system-provider";
 
 type AppState = {
   session: UserSession | null;
@@ -15,9 +16,11 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<UserSession | null>(null);
   const value = useMemo(() => ({ session, setSession }), [session]);
   return (
-    <QueryProvider>
-      <AppStateContext.Provider value={value}>{children}</AppStateContext.Provider>
-    </QueryProvider>
+    <DesignSystemProvider>
+      <QueryProvider>
+        <AppStateContext.Provider value={value}>{children}</AppStateContext.Provider>
+      </QueryProvider>
+    </DesignSystemProvider>
   );
 }
 

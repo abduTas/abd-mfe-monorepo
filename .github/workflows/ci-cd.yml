@@ -24,6 +24,7 @@ jobs:
       state: ${{ steps.filter.outputs.state }}
       shell: ${{ steps.filter.outputs.shell }}
       host: ${{ steps.filter.outputs.host }}
+      packages: ${{ steps.filter.outputs.packages }}
       root: ${{ steps.filter.outputs.root }}
     steps:
       - uses: actions/checkout@v4
@@ -37,6 +38,8 @@ jobs:
               - 'apps/shell/**'
             host:
               - 'apps/host/**'
+            packages:
+              - 'packages/**'
             root:
               - 'package.json'
               - 'package-lock.json'
@@ -107,7 +110,7 @@ jobs:
       github.ref == 'refs/heads/main' &&
       needs.ci.result == 'success' &&
       (needs.deploy-state.result == 'success' || needs.deploy-state.result == 'skipped') &&
-      (needs.changes.outputs.shell == 'true' || needs.changes.outputs.state == 'true' || needs.changes.outputs.root == 'true')
+      (needs.changes.outputs.shell == 'true' || needs.changes.outputs.state == 'true' || needs.changes.outputs.root == 'true' || needs.changes.outputs.packages == 'true')
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -133,7 +136,7 @@ jobs:
       github.ref == 'refs/heads/main' &&
       needs.ci.result == 'success' &&
       (needs.deploy-shell.result == 'success' || needs.deploy-shell.result == 'skipped') &&
-      (needs.changes.outputs.host == 'true' || needs.changes.outputs.root == 'true')
+      (needs.changes.outputs.host == 'true' || needs.changes.outputs.root == 'true' || needs.changes.outputs.packages == 'true')
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}

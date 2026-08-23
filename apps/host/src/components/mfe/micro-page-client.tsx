@@ -50,8 +50,9 @@ export function MicroPageClient() {
         <p className="mt-2 text-rose-300/80">
           Production: set <code className="text-rose-100">NEXT_PUBLIC_MFE_STATE_URL</code> and{" "}
           <code className="text-rose-100">NEXT_PUBLIC_MFE_SHELL_URL</code> in Vercel as{" "}
-          <strong>plain</strong> env vars (not Sensitive), then redeploy. Local: run{" "}
-          <code className="text-rose-100">npm run dev</code> in both MFE repos.
+          <strong>plain</strong> env vars (not Sensitive), then redeploy. Local: from the monorepo
+          root run <code className="text-rose-100">npm run dev:mfe</code> (state on :3002, shell on
+          :3001, host on :3000).
         </p>
       </div>
     );

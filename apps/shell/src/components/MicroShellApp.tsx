@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Button } from "@abd/design-system";
 import { decrement, increment, resetDemo, setMessage } from "sharedState/store";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "sharedState/store";
@@ -25,13 +26,9 @@ export default function MicroShellApp() {
       <p className="text-sm text-slate-300">{demo.message}</p>
       <p className="text-xs text-slate-500">Last updated by: {demo.lastUpdatedBy}</p>
       <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
-          className="rounded-md bg-emerald-600 px-3 py-2 text-sm text-white hover:bg-emerald-500"
-          onClick={() => dispatch(increment("remote"))}
-        >
+        <Button size="sm" onClick={() => dispatch(increment("remote"))}>
           Increment (remote)
-        </button>
+        </Button>
         <button
           type="button"
           className="rounded-md bg-slate-700 px-3 py-2 text-sm text-white hover:bg-slate-600"
