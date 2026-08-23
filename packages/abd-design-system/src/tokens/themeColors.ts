@@ -17,9 +17,7 @@ export type ThemeAwareColorPalette = {
   };
 };
 
-function themeAwareColorGroup<G extends keyof ColorPalette>(
-  group: G,
-): ThemeAwareColorPalette[G] {
+function themeAwareColorGroup<G extends keyof ColorPalette>(group: G): ThemeAwareColorPalette[G] {
   return new Proxy({} as ThemeAwareColorPalette[G], {
     get(_, key: string) {
       const palette = getColors(currentTheme)[group];

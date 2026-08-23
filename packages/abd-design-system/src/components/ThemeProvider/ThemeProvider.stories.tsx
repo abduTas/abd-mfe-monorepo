@@ -8,9 +8,7 @@ function ThemeToggleDemo() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-4)" }}>
-      <Button onClick={toggleTheme}>
-        Toggle theme (current: {theme})
-      </Button>
+      <Button onClick={toggleTheme}>Toggle theme (current: {theme})</Button>
       <Checkbox label="Sample checkbox" defaultChecked />
     </div>
   );

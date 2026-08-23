@@ -1,9 +1,7 @@
 import type { ColorPalette } from "./colors";
 import type { Spacing } from "./spacing";
 
-export function colorPaletteToCssVars(
-  palette: ColorPalette,
-): Record<string, string> {
+export function colorPaletteToCssVars(palette: ColorPalette): Record<string, string> {
   const vars: Record<string, string> = {};
 
   for (const [group, value] of Object.entries(palette) as [
@@ -30,10 +28,7 @@ export function spacingToCssVars(spacing: Spacing): Record<string, string> {
   );
 }
 
-export function applyCssVariables(
-  element: HTMLElement,
-  variables: Record<string, string>,
-): void {
+export function applyCssVariables(element: HTMLElement, variables: Record<string, string>): void {
   for (const [property, value] of Object.entries(variables)) {
     element.style.setProperty(property, value);
   }

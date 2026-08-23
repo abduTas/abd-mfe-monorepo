@@ -1,26 +1,26 @@
-import type { Preview } from '@storybook/react';
-import { ThemeProvider } from '../src/components/ThemeProvider';
-import '../src/components/ThemeProvider/theme.css';
-import React from 'react';
-type Theme = 'light' | 'dark';
+import type { Preview } from "@storybook/react";
+import { ThemeProvider } from "../src/components/ThemeProvider";
+import "../src/components/ThemeProvider/theme.css";
+import React from "react";
+type Theme = "light" | "dark";
 
 const preview: Preview = {
   globalTypes: {
     theme: {
-      description: 'Design system color theme',
+      description: "Design system color theme",
       toolbar: {
-        title: 'Theme',
-        icon: 'circlehollow',
+        title: "Theme",
+        icon: "circlehollow",
         items: [
-          { value: 'light', title: 'Light', icon: 'sun' },
-          { value: 'dark', title: 'Dark', icon: 'moon' },
+          { value: "light", title: "Light", icon: "sun" },
+          { value: "dark", title: "Dark", icon: "moon" },
         ],
         dynamicTitle: true,
       },
     },
   },
   initialGlobals: {
-    theme: 'light',
+    theme: "light",
   },
   decorators: [
     (Story, { globals }) => {

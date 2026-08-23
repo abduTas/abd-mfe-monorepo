@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import {
   applyCssVariables,
   colors,
@@ -66,9 +60,7 @@ export const ThemeProvider: React.FC<{
   }, []);
 
   return (
-    <ThemeContext.Provider
-      value={{ theme, colors, setTheme, toggleTheme }}
-    >
+    <ThemeContext.Provider value={{ theme, colors, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
